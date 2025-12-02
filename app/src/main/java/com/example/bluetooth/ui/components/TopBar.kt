@@ -4,12 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,18 +29,21 @@ fun TopBar(
     val navStack by navController.currentBackStackEntryAsState()
     val currentRoute = navStack?.destination?.route
 
-    if(currentRoute != "HomeScreen") { //Only shows the topbar if not on homescreen
-        Row(
-            modifier = Modifier
-                .padding(WindowInsets.statusBars.asPaddingValues())
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Start,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
+    Row(
+        modifier = modifier
+            .padding(WindowInsets.statusBars.asPaddingValues())
+            .fillMaxWidth()
+            .height(48.dp),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if(currentRoute != "HomeScreen") { //Only shows the topbar if not on homescreen
             Button(
-                modifier = Modifier.padding(8.dp, 4.dp),
+                modifier = Modifier
+                    .padding(8.dp, 4.dp)
+                    .fillMaxHeight(),
                 onClick = {
-                    navController.navigate("HomeScreen")
+                    navController.popBackStack() //Go back to home
                 }
             ) {
                 Text("Back")

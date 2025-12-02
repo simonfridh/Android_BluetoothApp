@@ -3,11 +3,9 @@ package com.example.bluetooth.ui.screens
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -84,7 +82,12 @@ fun HomeScreen(
                     Text("Connect to Bluetooth Device")
                 }
                 Button(
-                    onClick = { navController.navigate("MeasurementScreen") }
+                    onClick = {
+                        navController.navigate("MeasurementScreen") {
+                            //Stops multiple pages from loading if pressing multiple times fast
+                            launchSingleTop = true
+                        }
+                    }
                 ) {
                     Text("START MEASUREMENT")
                 }
@@ -133,7 +136,12 @@ fun HomeScreen(
                     Text("Connect to Bluetooth Device")
                 }
                 Button(
-                    onClick = { navController.navigate("MeasurementScreen") }
+                    onClick = {
+                        navController.navigate("MeasurementScreen") {
+                            //Stops multiple pages from loading if pressing multiple times fast
+                            launchSingleTop = true
+                        }
+                    }
                 ) {
                     Text("START MEASUREMENT")
                 }
