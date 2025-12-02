@@ -9,10 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.bluetooth.ui.viewmodels.SensorState
 
 @Composable
 fun MeasurementData(
-    //TODO probably needs access to viewmodel here
+    sensorState: SensorState,
     modifier: Modifier = Modifier
 ) {
     //TODO replace with graph later
@@ -22,12 +23,12 @@ fun MeasurementData(
         verticalArrangement = Arrangement.Center
     ) {
         Text("Current measurement data:")
-        Text("TODO: add viewmodel data in components/MeasurementData")
+        Text("isDark: ${sensorState.isDark}")
     }
 }
 
 @Preview
 @Composable
 private fun MeasurementDataPreview() {
-    MeasurementData()
+    MeasurementData(sensorState = SensorState())
 }
