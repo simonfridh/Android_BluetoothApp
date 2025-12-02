@@ -3,38 +3,29 @@ package com.example.bluetooth.ui.screens
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.bluetooth.R
-import com.example.bluetooth.ui.viewmodels.IBlueToothVM
+import com.example.bluetooth.ui.components.MeasurementData
 import com.example.bluetooth.ui.viewmodels.FakeVM
+import com.example.bluetooth.ui.viewmodels.IBlueToothVM
 
 @Composable
-fun HomeScreen(
+fun MeasurementScreen(
     vm: IBlueToothVM,
-    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     val orientation = LocalConfiguration.current.orientation
@@ -54,19 +45,7 @@ fun HomeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ){
-                Icon(
-                    painter = painterResource(R.drawable.bluetooth),
-                    contentDescription = "Bluetooth icon",
-                    modifier = Modifier
-                        .size(128.dp)
-                        .padding(8.dp),
-                    tint = Color.Unspecified
-                )
-                Text(
-                    text = "Bluetooth app",
-                    style = MaterialTheme.typography.displaySmall,
-                    textAlign = TextAlign.Center
-                )
+                MeasurementData(modifier.padding(8.dp))
             }
 
             //BOTTOM HALF
@@ -79,14 +58,9 @@ fun HomeScreen(
             ){
                 Button(
                     enabled = false,
-                    onClick = { }
+                    onClick = { /* TODO add stop function from viewmodel */ }
                 ) {
-                    Text("Connect to Bluetooth Device")
-                }
-                Button(
-                    onClick = { navController.navigate("MeasurementScreen") }
-                ) {
-                    Text("START MEASUREMENT")
+                    Text("STOP")
                 }
             }
         }
@@ -103,19 +77,7 @@ fun HomeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Icon(
-                    painter = painterResource(R.drawable.bluetooth),
-                    contentDescription = "Bluetooth icon",
-                    modifier = Modifier
-                        .size(128.dp)
-                        .padding(8.dp),
-                    tint = Color.Unspecified
-                )
-                Text(
-                    text = "Bluetooth app",
-                    style = MaterialTheme.typography.displaySmall,
-                    textAlign = TextAlign.Center
-                )
+                MeasurementData(modifier.padding(8.dp))
             }
 
             //RIGHT SIDE
@@ -128,14 +90,9 @@ fun HomeScreen(
             ) {
                 Button(
                     enabled = false,
-                    onClick = { }
+                    onClick = { /* TODO add stop function from viewmodel */ }
                 ) {
-                    Text("Connect to Bluetooth Device")
-                }
-                Button(
-                    onClick = { navController.navigate("MeasurementScreen") }
-                ) {
-                    Text("START MEASUREMENT")
+                    Text("STOP")
                 }
             }
         }
@@ -145,11 +102,11 @@ fun HomeScreen(
 @Preview
 @Composable
 private fun PortraitPreview() {
-    HomeScreen(FakeVM(), rememberNavController())
+    MeasurementScreen(FakeVM())
 }
 
 @Preview(widthDp = 915, heightDp = 412)
 @Composable
 private fun LandscapePreview() {
-    HomeScreen(FakeVM(), rememberNavController())
+    MeasurementScreen(FakeVM())
 }
